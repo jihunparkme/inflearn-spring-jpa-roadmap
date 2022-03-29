@@ -57,7 +57,6 @@ public class JpaMain {
             Member member = new Member();
             member.setId(1L);
             member.setName("Aaron");
-
             em.persist(member);
 
             tx.commit();
