@@ -37,7 +37,7 @@ public class JpaMain {
 
         try {
             Member member = em.find(Member.class, 1L);
-            member.setName("AaronNew");
+            member.setUsername("AaronNew");
             // JPA 가 commit 시점에 변경사항을 체크하고 변경 시 update query 생성
             tx.commit();
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class JpaMain {
         try {
             Member member = new Member();
             member.setId(1L);
-            member.setName("Aaron");
+            member.setUsername("Aaron");
             em.persist(member);
 
             tx.commit();
