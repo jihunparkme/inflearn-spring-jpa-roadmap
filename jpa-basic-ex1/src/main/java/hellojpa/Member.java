@@ -63,6 +63,21 @@ public class Member extends BaseEntity{
     @Transient
     private String temp;
 
+    @Embedded
+    private Period workPeriod;
+    @Embedded
+    private Address homeAddress;
+
+    @AttributeOverrides({
+            @AttributeOverride(name = "city",
+                    column = @Column(name = "work_city")),
+            @AttributeOverride(name = "street",
+                    column = @Column(name = "work_street")),
+            @AttributeOverride(name = "zipcode",
+                    column = @Column(name = "work_zipcode")),
+    })
+    private Address workAddress;
+
     public Long getId() {
         return id;
     }
