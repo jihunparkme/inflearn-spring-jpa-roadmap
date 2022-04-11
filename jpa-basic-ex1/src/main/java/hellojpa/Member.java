@@ -141,4 +141,16 @@ public class Member extends BaseEntity{
     public void setTemp(String temp) {
         this.temp = temp;
     }
+
+    public void setWorkPeriod(Period workPeriod) {
+        this.workPeriod = workPeriod;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public void setWorkAddress(Address workAddress) {
+        this.workAddress = workAddress;
+    }
 }
