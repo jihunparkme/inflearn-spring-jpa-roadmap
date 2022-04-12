@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
 
@@ -17,11 +18,18 @@ public class JpaMain {
         try {
             Member member = new Member();
             member.setUsername("member1");
+            member.setAge(10);
             em.persist(member);
 
-            Member result = em.createQuery("select m from Member m where m.username = :username", Member.class)
-                    .setParameter("username", "member1")
-                    .getSingleResult();
+            em.flush();
+            em.clear();
+
+            List<MemberDto> result = em.createQuery("select new jpql.MemberDto(m.username, m.age) from Member m", MemberDto.class)
+                    .getResultList();
+
+            MemberDto memberDto = result.get(0);
+            System.out.println("memberDto.getUsername() = " + memberDto.getUsername());
+            System.out.println("memberDto.getAge() = " + memberDto.getAge());
 
             tx.commit();
         } catch (Exception e) {
