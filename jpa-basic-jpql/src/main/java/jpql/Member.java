@@ -9,9 +9,12 @@ public class Member {
     private String username;
     private int age;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tean_id")
     private Team team;
+
+    @Enumerated(EnumType.STRING)
+    private MemverType type;
 
     public Long getId() {
         return id;
