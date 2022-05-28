@@ -20,6 +20,15 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    @Transactional
+    public void updateItem(Long itemId, String name, int price, int stockQuantity) {
+        Item findItem = itemRepository.findOne(itemId); //같은 엔티티 조회(영속 상태)
+        findItem.setName(name); //데이터 수정
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuantity);
+        // Transactional commit -> flush
+    }
+
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
